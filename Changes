@@ -1,5 +1,10 @@
 Revision history for Perl extension Class-LazyLoad.
 
+0.02 Fri Dec 03 13:00:00 2004
+    - Result of CPANSMOKE from nothingmuch
+        - Removed 'use warnings;' from all .t files
+        - Removed 'use 5.0.0;' from Class/LazyLoad.pm
+
 0.01 Fri Nov 19 08:48:29 2004
     - module created
 

@@ -1,7 +1,5 @@
 package Class::LazyLoad;
 
-use 5.0.0;
-
 use strict 'vars';
 
 use vars qw(
@@ -9,7 +7,7 @@ use vars qw(
     $VERSION
 );
 
-$VERSION = 0.01;
+$VERSION = 0.02;
 
 {
     my @todo;
