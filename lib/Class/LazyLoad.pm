@@ -284,7 +284,7 @@ This is the actual function called by the INIT block to do lazyloading during co
 
 =item B<lazyload_one>
 
-This works much lie C<lazyload> but will only lazyload a single instance of a given package. It will force compilation of the package, but it will not alter the package itself. 
+This works much like C<lazyload> but will only lazyload a single instance of a given package. It will force compilation of the package, but it will not alter the package itself. 
 
 =back
 
