@@ -7,7 +7,7 @@ use vars qw(
     $VERSION
 );
 
-$VERSION = 0.02;
+$VERSION = 0.04;
 
 {
     my @todo;
@@ -88,7 +88,11 @@ sub AUTOLOAD
 sub _compile
 { 
     my $pkg = shift;
-    eval "use $pkg;" unless exists $INC{$pkg};
+    (my $filename = $pkg) =~ s!::!/!g;
+#    print "$pkg => " . $INC{"$filename.pm"} . "\n";
+    return if exists $INC{"$filename.pm"};
+
+    eval "use $pkg;";
     die "Could not load '$pkg' because : $@" if $@;
 }
 
@@ -112,7 +116,7 @@ sub _compile
             next if defined &{$subname};
 
             my $func = \&{ $pkg . '::' . $name };
-            *$subname = sub { unshift @_, $func; bless \@_ };
+            *$subname = sub { unshift @_, $func; bless \@_, __PACKAGE__ };
 
             local $^W = 0;
             *{ $pkg . '::' . $name }  = \&$subname;
@@ -160,10 +164,11 @@ sub _compile
     sub lazyload_one
     {
         my ($pkg, $name, @args) = @_;
-        $name = 'new' unless defined $name && length $name;
 
         die "Must pass in (CLASS, [ CONSTRUCTOR, [ARGS] ]) to lazyload_one().\n"
-            unless defined $pkg && defined $name;
+            unless defined $pkg;
+
+        $name = 'new' unless defined $name && length $name;
 
         _compile( $pkg );
 
@@ -295,14 +300,13 @@ None that we are aware of. Of course, if you find a bug, let us know, and we wil
 
 We use B<Devel::Cover> to test the code coverage of our tests, below is the B<Devel::Cover> report on this module test suite.
 
- ---------------------------- ------ ------ ------ ------ ------ ------ ------
- File                           stmt branch   cond    sub    pod   time  total
- ---------------------------- ------ ------ ------ ------ ------ ------ ------
- Class/LazyLoad.pm             100.0   88.2   33.3  100.0  100.0   89.2   95.2
- Class/LazyLoad/Functions.pm   100.0    n/a    n/a  100.0    n/a   10.8  100.0
- ---------------------------- ------ ------ ------ ------ ------ ------ ------
- Total                         100.0   88.2   33.3  100.0  100.0  100.0   95.6
- ---------------------------- ------ ------ ------ ------ ------ ------ ------
+  ----------------------------------- ------ ------ ------ ------ ------ ------
+  File                                  stmt branch   cond    sub   time  total
+  ----------------------------------- ------ ------ ------ ------ ------ ------
+  blib/lib/Class/LazyLoad.pm           100.0  100.0  100.0  100.0   94.7  100.0
+  .../lib/Class/LazyLoad/Functions.pm  100.0    n/a    n/a  100.0    5.3  100.0
+  Total                                100.0  100.0  100.0  100.0  100.0  100.0
+  ----------------------------------- ------ ------ ------ ------ ------ ------
 
 =head1 SEE ALSO
 

@@ -4,7 +4,7 @@ use Class::LazyLoad [ __PACKAGE__, 'my_new' ];
 
 sub my_new
 {
-    bless \my $x, shift;
+    bless \my ($x), shift;
 }
 
 sub hello

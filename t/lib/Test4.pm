@@ -6,7 +6,7 @@ use overload
     '+' => 'add';
 
 sub new {
-    bless \my $x, shift;
+    bless \my ($x), shift;
 }
 
 sub add {

@@ -17,7 +17,7 @@ my $obj1 = $TEST->new;
 isa_ok( $obj1, $TEST );
 is( ref($obj1), $TEST, "... and it's really a $TEST" );
 
-my $lazy = lazyload_one( $TEST, 'new' );
+my $lazy = lazyload_one( $TEST );
 isa_ok( $lazy, $TEST );
 is( ref($lazy), $CLASS, "... but it's really a $CLASS" );
 

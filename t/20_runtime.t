@@ -2,7 +2,7 @@ use strict;
 
 use lib 't/lib';
 
-use Test::More tests => 20;
+use Test::More tests => 21;
 
 my ($CLASS, $TEST);
 BEGIN {
@@ -31,6 +31,8 @@ ok( defined $obj2->hello, "Calling a method still works and changes the object" 
 
 isa_ok( $obj2, $TEST );
 is( ref($obj2), $TEST, "... and it's really a $TEST" );
+
+ok( lazyload( $TEST ), 'lazyload() called again' );
 
 my $obj3 = $TEST->new();
 

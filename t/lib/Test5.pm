@@ -6,7 +6,7 @@ use overload
     '""' => 'stringy';
 
 sub new {
-    bless \my $x, shift;
+    bless \my ($x), shift;
 }
 
 sub stringy {

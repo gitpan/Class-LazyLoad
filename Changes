@@ -1,5 +1,11 @@
 Revision history for Perl extension Class-LazyLoad.
 
+0.03 Wed Dec 22 10:30:00 2004
+    - Result of CPANSMOKE from nothingmuch
+        - Added parens around my() statements in t/lib/Test*.pm
+    - Improved test coverage to 100%
+        - This fixed a bug in _compile()
+
 0.02 Fri Dec 03 13:00:00 2004
     - Result of CPANSMOKE from nothingmuch
         - Removed 'use warnings;' from all .t files
@@ -7,4 +13,3 @@ Revision history for Perl extension Class-LazyLoad.
 
 0.01 Fri Nov 19 08:48:29 2004
     - module created
-

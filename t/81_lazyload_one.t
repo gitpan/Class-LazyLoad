@@ -13,6 +13,7 @@ BEGIN {
 }
 
 my $lazy = lazyload_one( $TEST, 'new' );
+
 isa_ok( $lazy, $TEST );
 is( ref($lazy), $CLASS, "... but it's really a $CLASS" );
 
@@ -21,7 +22,7 @@ ok( $lazy->hello, 'Function call successful' );
 isa_ok( $lazy, $TEST );
 is( ref($lazy), $TEST, "... and it's really a $TEST" );
 
-my $lazy2 = lazyload_one( $TEST, 'new' );
+my $lazy2 = lazyload_one( $TEST, '' );
 isa_ok( $lazy2, $TEST );
 is( ref($lazy2), $CLASS, "... but it's really a $CLASS" );
 

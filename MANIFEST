@@ -16,6 +16,7 @@ t/62_diff_constr_runtime_function.t
 t/70_errors.t
 t/80_lazyload_one.t
 t/81_lazyload_one.t
+t/82_lazyload_one.t
 t/90_two_classes.t
 t/pod.t
 t/pod_coverage.t

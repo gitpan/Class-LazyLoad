@@ -2,7 +2,7 @@ package Test7;
 
 sub my_new
 {
-    bless \my $x, shift;
+    bless \my ($x), shift;
 }
 
 sub hello
